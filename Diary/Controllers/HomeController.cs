@@ -11,14 +11,22 @@ namespace Diary.Controllers
 {
     public class HomeController : Controller
     {
+        MobileContext db;
+        public HomeController(MobileContext context)
+        {
+            db = context;
+        }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult View()
+        public IActionResult Show()
         {
             return View();
         }
-
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }

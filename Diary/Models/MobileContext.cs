@@ -10,6 +10,11 @@ namespace Diary.Models
     {
         public DbSet<Employee> Employee { get; set; }
 
-       
+        public MobileContext(DbContextOptions<MobileContext> options)
+             : base(options)
+        {
+
+            Database.EnsureCreated();
+        }
     }
 }
