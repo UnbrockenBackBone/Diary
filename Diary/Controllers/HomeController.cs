@@ -44,8 +44,8 @@ namespace Diary.Controllers
                      Status = "",
                      Hourly_Rate = Hourly_Rate,
                      Many_hours_worked = Many_hours_worked,
-                     Photo = Photo
-                  
+                     Photo = Photo,
+                    AdmModUse = 0
                  }); ;
             db.SaveChanges();
             return View();
