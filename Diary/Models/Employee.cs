@@ -17,5 +17,6 @@ namespace Diary.Models
         public int Hourly_Rate;
         public int Many_hours_worked;
         public string Photo;
+
     }
 }

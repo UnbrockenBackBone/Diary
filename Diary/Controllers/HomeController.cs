@@ -15,7 +15,39 @@ namespace Diary.Controllers
         {
             return View();
         }
-        public IActionResult View()
+        public IActionResult Views()
+        {
+            return View();
+        }
+
+        public IActionResult ShowMagazine()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddEmployee()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddEmployee(string Fname,
+            string Lname,
+            string Sname,
+            string Position,
+            string Department,
+            string Event,
+            string Status,
+            int Hourly_Rate,
+            int Many_hours_worked,
+            string Foto)
+        {
+            return Redirect("Index");
+        }
+        public IActionResult RedugEmployee()
+        {
+            return View();
+        }
+        public IActionResult PagePeople()
         {
             return View();
         }
