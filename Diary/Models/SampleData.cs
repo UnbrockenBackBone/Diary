@@ -23,7 +23,8 @@ namespace Diary.Models
                         Status = "work",
                         Hourly_Rate = 20,
                         Many_hours_worked = 10,
-                        Photo = "https://life.pravda.com.ua/images/doc/e/0/e03b103-albert-724x480.jpg"
+                        Photo = "https://life.pravda.com.ua/images/doc/e/0/e03b103-albert-724x480.jpg",
+                        AdmModUse = 0
                     },
                     new Employee
                     {
@@ -36,7 +37,8 @@ namespace Diary.Models
                         Status = "work",
                         Hourly_Rate = 100,
                         Many_hours_worked = 248,
-                        Photo = "https://life.pravda.com.ua/images/doc/e/0/e03b103-albert-724x480.jpg"
+                        Photo = "https://life.pravda.com.ua/images/doc/e/0/e03b103-albert-724x480.jpg",
+                        AdmModUse = 0
                     }
                 );
                 context.SaveChanges();

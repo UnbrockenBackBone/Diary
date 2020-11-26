@@ -37,15 +37,16 @@ namespace Diary.Controllers
                  {
                      Fname = Fname,
                      Lname = Lname,
-                     Sname = Sname, 
+                     Sname = Sname,
                      Position = Position,
                      Department = Department,
                      Event = "",
                      Status = "",
                      Hourly_Rate = Hourly_Rate,
                      Many_hours_worked = Many_hours_worked,
-                     Photo = Photo
-                 });
+                     Photo = Photo,
+                     AdmModUse = 0
+                 }); ;
             db.SaveChanges();
             return View();
         }

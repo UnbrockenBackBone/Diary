@@ -20,5 +20,6 @@ namespace Diary.Models
         public int Hourly_Rate { get; set; }
         public int Many_hours_worked { get; set; }
         public string Photo { get; set; }
+        public int AdmModUse { get; set; }
     }
 }
