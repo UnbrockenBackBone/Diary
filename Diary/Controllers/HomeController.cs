@@ -11,46 +11,52 @@ namespace Diary.Controllers
 {
     public class HomeController : Controller
     {
+        MobileContext db;
+        public HomeController(MobileContext context)
+        {
+            db = context;
+        }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Views()
+        public IActionResult Show()
         {
-            return View();
-        }
-
-        public IActionResult ShowMagazine()
-        {
-            return View();
+            return View(db.Employee.ToList());
         }
         [HttpGet]
-        public IActionResult AddEmployee()
+        public IActionResult Add()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AddEmployee(string Fname,
-            string Lname,
-            string Sname,
-            string Position,
-            string Department,
-            string Event,
-            string Status,
-            int Hourly_Rate,
-            int Many_hours_worked,
-            string Foto)
+        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, int Hourly_Rate, int Many_hours_worked, string Photo)
         {
-            return Redirect("Index");
-        }
-        public IActionResult RedugEmployee()
-        {
+            db.Employee.AddRange(
+                 new Employee
+                 {
+                     Fname = Fname,
+                     Lname = Lname,
+                     Sname = Sname,
+                     Position = Position,
+                     Department = Department,
+                     Event = "",
+                     Status = "",
+                     Hourly_Rate = Hourly_Rate,
+                     Many_hours_worked = Many_hours_worked,
+                     Photo = Photo
+                  
+                 }); ;
+            db.SaveChanges();
             return View();
         }
         public IActionResult PagePeople()
         {
             return View();
         }
-
+        public IActionResult RedugEmployee()
+        {
+            return View();
+        }
     }
 }
