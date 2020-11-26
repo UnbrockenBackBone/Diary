@@ -22,10 +22,31 @@ namespace Diary.Controllers
         }
         public IActionResult Show()
         {
-            return View();
+            return View(db.Employee.ToList());
         }
+        [HttpGet]
         public IActionResult Add()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, int Hourly_Rate, int Many_hours_worked, string Photo)
+        {
+            db.Employee.AddRange(
+                 new Employee
+                 {
+                     Fname = Fname,
+                     Lname = Lname,
+                     Sname = Sname, 
+                     Position = Position,
+                     Department = Department,
+                     Event = "",
+                     Status = "",
+                     Hourly_Rate = Hourly_Rate,
+                     Many_hours_worked = Many_hours_worked,
+                     Photo = Photo
+                 });
+            db.SaveChanges();
             return View();
         }
     }
