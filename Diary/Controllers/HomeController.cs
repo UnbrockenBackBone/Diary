@@ -54,9 +54,40 @@ namespace Diary.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult RedugEmployee()
+        {
+            return View(db.Employee.ToList());
+        }
+        [HttpGet]
+        public IActionResult Update(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.UserId = id;
+            return View(db.Employee.ToList());
+        }
+
+        [HttpPost]
+        public string Update(Employee animal)
+        {
+            db.Employee.Update(animal);
+
+            db.SaveChanges();
+
+            return "Nice";
+        }
+        public IActionResult LogIn()
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null) return View(db.Employee.ToList());
+            db.Employee.Remove(db.Employee.Find(id));
+            db.SaveChanges();
+            return View(db.Employee.ToList());
+        }
+
     }
 }

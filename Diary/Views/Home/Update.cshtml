@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Diary.Models.Employee>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #E0DABB;
+        }
+
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        input[type=text] {
+            width: 40%;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-left: 35%;
+        }
+
+        label {
+            margin-left: 35%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 30%;
+            margin-left: 40%;
+        }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        .block {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <h2>Update Form</h2>
+
+    @foreach (Employee item in Model)
+    {
+        if (ViewBag.UserId == item.Id)
+        { 
+        <form method="post">
+
+            <div class="block">
+                <label><b>Firstname</b></label><br />
+                <input type="text" name="Fname" value="@item.Fname">
+                <br />
+                <label><b>Lastname</b></label><br />
+                <input type="text" name="Lname" value="@item.Lname">
+                <br />
+                <label><b>Surname</b></label><br />
+                <input type="text" name="Sname" value="@item.Sname">
+                <br />
+                <label><b>Position</b></label><br />
+                <input type="text" name="Position" value="@item.Position">
+                <br />
+                <label><b>Department</b></label><br />
+                <input type="text" name="Department" value="@item.Department">
+                <br />
+                <label><b>Event</b></label><br />
+                <input type="text" name="Event" value="@item.Event">
+                <br />
+                <label><b>Status</b></label><br />
+                <input type="text" name="Status" value="@item.Status">
+                <br />
+                <label><b>Hourly rate</b></label><br />
+                <input type="text" name="Hourly_Rate" value="@item.Hourly_Rate">
+                <br />
+                <label><b>Many hours worked</b></label><br />
+                <input type="text" name="Many_hours_worked" value="@item.Many_hours_worked">
+                <br />
+                <label><b>Photo</b></label><br />
+                <input type="text" name="Photo" value="@item.Photo">
+                <br /><br />
+                <button type="submit">Redug</button>
+            </div>
+
+        </form>
+        }
+    }
+    </body>
+</html>
