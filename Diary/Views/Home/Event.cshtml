@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Diary.Models.Employee>
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>Update Form</h2>
+
+    @foreach (Employee item in Model)
+    {
+        if (ViewBag.UserId == item.Id)
+        {
+            <form method="post">
+                <div class="block">
+                        <input hidden name="Fname" value="@item.Fname">
+                        <input hidden name="Lname" value="@item.Lname">
+                        <input hidden name="Sname" value="@item.Sname">
+                        <input hidden name="Position" value="@item.Position">
+                        <input hidden name="Department" value="@item.Department">
+                        <label><b>Event</b></label><br />
+                        <input name="Technical_study" type="radio" value="Technical_study">
+                        <label>Technical study</label>
+                        <input name="Miting" type="radio" value="Miting">
+                        <label>Miting</label>
+                        <input name="Cooperative" type="radio" value="Cooperative">
+                        <label>Cooperative</label>
+                        <br />
+                        <input hidden name="Status" value="@item.Status">
+                        <input hidden name="Hourly_Rate" value="@item.Hourly_Rate">
+                        <input hidden name="Many_hours_worked" value="@item.Many_hours_worked">
+                        <input hidden name="Photo" value="@item.Photo">
+                        <input hidden name="AdmModUse" value="@item.AdmModUse">
+                        <button type="submit">Create</button>
+                    </div>
+            </form>
+        }
+    }
+</body>
+</html>
