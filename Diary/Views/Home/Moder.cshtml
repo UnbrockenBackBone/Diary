@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Diary.Models.Employee>
 
 @{
-    ViewData["Title"] = "Show";
+    ViewData["Title"] = "Create Event";
 }
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
         background-color: #E0DABB;
     }
-    #text
-    {
-        text-align:center;
+
+    #text {
+        text-align: center;
     }
 </style>
 
@@ -146,7 +146,13 @@
                                         @item.Many_hours_worked
                                     </div>
                                 </div>
-                                
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-9 text-secondary">
+                                        <a asp-controller="Home" asp-action="Event" asp-route-id="@item.Id"><button class="btn-dark">Create Event</button></a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -154,56 +160,4 @@
             </div>
         </div>
     }
-    </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>

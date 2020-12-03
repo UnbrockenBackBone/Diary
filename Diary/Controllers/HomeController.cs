@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Diary.Models;
+using Microsoft.VisualBasic;
 
 namespace Diary.Controllers
 {
@@ -68,13 +69,13 @@ namespace Diary.Controllers
         }
 
         [HttpPost]
-        public string Update(Employee animal)
+        public IActionResult Update(Employee employee)
         {
-            db.Employee.Update(animal);
+            db.Employee.Update(employee);
 
             db.SaveChanges();
 
-            return "Nice";
+            return RedirectToAction("Show");
         }
         public IActionResult LogIn()
         {
@@ -86,8 +87,29 @@ namespace Diary.Controllers
             if (id == null) return View(db.Employee.ToList());
             db.Employee.Remove(db.Employee.Find(id));
             db.SaveChanges();
+            return RedirectToAction("Show");
+        }
+        [HttpGet]
+        public IActionResult Event(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
 
+        [HttpPost]
+        public IActionResult Event(Employee employee)
+        {
+            db.Employee.Update(employee);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Moder");
+        }
+        [HttpGet]
+        public IActionResult Moder()
+        {
+            return View(db.Employee.ToList());
+        }
     }
 }
