@@ -8,9 +8,9 @@
         font-family: Arial, Helvetica, sans-serif;
         background-color: #E0DABB;
     }
-    #text
-    {
-        text-align:center;
+
+    #text {
+        text-align: center;
     }
 </style>
 
@@ -20,9 +20,9 @@
     <style>
         body {
             margin-top: 20px;
-            color: #1a202c;
+            color: white;
             text-align: left;
-            background-color: #e0dabb;
+            background-color: #8DC0C9;
         }
 
         .main-body {
@@ -39,10 +39,11 @@
             flex-direction: column;
             min-width: 0;
             word-wrap: break-word;
-            background-color: #fff;
+            background-color: black;
             background-clip: border-box;
             border: 0 solid rgba(0,0,0,.125);
-            border-radius: .25rem;
+            border-radius: 4%;
+            box-shadow: 0.6em 0.6em 6px rgba(122,122,122,0.5);
         }
 
         .card-body {
@@ -76,11 +77,17 @@
         .shadow-none {
             box-shadow: none !important;
         }
+
+        hr {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
+
     @foreach (Employee item in Model)
     {
+
         <div class="container">
             <div class="main-body">
 
@@ -91,7 +98,7 @@
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="@item.Photo" alt="Admin" class="rounded-circle" width="150">
                                     <div class="mt-3">
-                                        <h4>Mark</h4>
+                                        <h4> @item.Fname </h4>
                                         <p class="text-secondary mb-1">@item.Position</p>
                                     </div>
                                 </div>
@@ -110,7 +117,7 @@
                                         @item.Fname  @item.Lname
                                     </div>
                                 </div>
-                                <hr>
+                                <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Department</h6>
@@ -119,7 +126,7 @@
                                         @item.Department
                                     </div>
                                 </div>
-                                <hr>
+                                <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Status</h6>
@@ -128,7 +135,7 @@
                                         @item.Status
                                     </div>
                                 </div>
-                                <hr>
+                                <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Hourly rate</h6>
@@ -137,7 +144,7 @@
                                         @item.Hourly_Rate
                                     </div>
                                 </div>
-                                <hr>
+                                <hr />
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">hours worked</h6>
@@ -146,7 +153,7 @@
                                         @item.Many_hours_worked
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -154,7 +161,7 @@
             </div>
         </div>
     }
-    </body>
+</body>
 </html>
 
 

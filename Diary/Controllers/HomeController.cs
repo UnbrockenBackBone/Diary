@@ -68,13 +68,12 @@ namespace Diary.Controllers
         }
 
         [HttpPost]
-        public string Update(Employee animal)
+        public IActionResult Update(Employee animal)
         {
             db.Employee.Update(animal);
 
             db.SaveChanges();
-
-            return "Nice";
+            return RedirectToAction("Show");
         }
         public IActionResult LogIn()
         {
@@ -86,7 +85,7 @@ namespace Diary.Controllers
             if (id == null) return View(db.Employee.ToList());
             db.Employee.Remove(db.Employee.Find(id));
             db.SaveChanges();
-            return View(db.Employee.ToList());
+            return RedirectToAction("Show");
         }
 
     }
