@@ -80,6 +80,30 @@
         hr {
             background-color: white;
         }
+        .img-circular {
+            width: 200px;
+            height: 200px;
+            display: block;
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 100px;
+            -webkit-border-top-left-radius: 100px;
+            -moz-border-top-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+            -webkit-border-bottom-right-radius: 100px;
+            -moz-border-bottom-right-radius: 100px;
+        }
+
+        .img-circle {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-position: 50% 50%;
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+
     </style>
 </head>
 <body>
@@ -95,7 +119,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="@item.Photo" alt="Admin" class="rounded-circle" width="150">
+                                    @*<div class="img-circular" style="background-image: url('@item.Photo');"></div>*@
+                                    <div class="img-circle" style="background-image: url('@item.Photo');"></div>
+
                                     <div class="mt-3">
                                         <h4> @item.Fname </h4>
                                         <p class="text-secondary mb-1">@item.Position</p>
