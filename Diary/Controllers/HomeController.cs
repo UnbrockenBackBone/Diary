@@ -20,6 +20,7 @@ namespace Diary.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Show()
         {
             return View(db.Employee.ToList());
@@ -40,8 +41,7 @@ namespace Diary.Controllers
                      Sname = Sname,
                      Position = Position,
                      Department = Department,
-                     Event = "",
-                     Status = "",
+                     Status = 0,
                      Hourly_Rate = Hourly_Rate,
                      Many_hours_worked = Many_hours_worked,
                      Photo = Photo,
@@ -68,9 +68,9 @@ namespace Diary.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Employee animal)
+        public IActionResult Update(Employee employee)
         {
-            db.Employee.Update(animal);
+            db.Employee.Update(employee);
 
             db.SaveChanges();
             return RedirectToAction("Show");
@@ -87,6 +87,26 @@ namespace Diary.Controllers
             db.SaveChanges();
             return RedirectToAction("Show");
         }
+        [HttpGet]
+        public IActionResult Moder()
+        {
+            return View(db.Employee.ToList());
+        }
+        [HttpGet]
+        public IActionResult Event(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.UserId = id;
+            return View(db.Employee.ToList());
+        }
 
+        [HttpPost]
+        public IActionResult Event(Employee employee)
+        {
+            db.Employee.Update(employee);
+
+            db.SaveChanges();
+            return RedirectToAction("Show");
+        }
     }
 }
