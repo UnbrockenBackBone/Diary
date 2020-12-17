@@ -4,35 +4,20 @@
 <body>
     <br />
     <h2>Update Form</h2>
-
-    @foreach (Employee item in Model)
-    {
-        if (ViewBag.UserId == item.Id)
-        {
-            <form method="post">
-                <div class="block">
-                        <input hidden name="Fname" value="@item.Fname">
-                        <input hidden name="Lname" value="@item.Lname">
-                        <input hidden name="Sname" value="@item.Sname">
-                        <input hidden name="Position" value="@item.Position">
-                        <input hidden name="Department" value="@item.Department">
-                        <label><b>Event</b></label><br />
-                        <input name="Technical_study" type="radio" value="Technical_study">
-                        <label>Technical study</label>
-                        <input name="Miting" type="radio" value="Miting">
-                        <label>Miting</label>
-                        <input name="Cooperative" type="radio" value="Cooperative">
-                        <label>Cooperative</label>
-                        <br />
-                        <input hidden name="Status" value="@item.Status">
-                        <input hidden name="Hourly_Rate" value="@item.Hourly_Rate">
-                        <input hidden name="Many_hours_worked" value="@item.Many_hours_worked">
-                        <input hidden name="Photo" value="@item.Photo">
-                        <input hidden name="AdmModUse" value="@item.AdmModUse">
-                        <button type="submit">Create</button>
-                    </div>
-            </form>
-        }
-    }
+    <form method="post">
+        <div class="block">
+            <label>Name:</label><br />
+            <input name="Name_Event" /><br />
+            <label>Start Date:</label><br />
+            <input type="date" name="Start_Date_Event" min="2020-10-01" max="2021-01-01"><br />
+            <label>End Date:</label><br />
+            <input type="date" name="End_Date_Event" min="2020-10-01" max="2021-01-01"><br />
+            <button type="submit">Create</button><br/>
+            @foreach (Employee item in Model)
+            {
+                <label>@item.Fname</label><br/>
+            }
+        </div>
+    </form>
 </body>
 </html>
