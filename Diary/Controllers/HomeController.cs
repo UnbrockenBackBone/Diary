@@ -34,11 +34,12 @@ namespace Diary.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public IActionResult PagePeople()
-        //{
-        //    return View();
-        //}
+        public IActionResult PagePeople(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.UserId = id;
+            return View(db.Employee.ToList());
+        }
         #region Add
         [HttpGet]
         public IActionResult Add()
