@@ -79,85 +79,85 @@
     </style>
 </head>
 <body>
-    @foreach (Employee item in Model)
-    {
-        <div class="container">
-            <div class="main-body">
+<div class="row">
+    <div class="col-sm-9 text-secondary">
+        <a asp-controller="Home" asp-action="Event" ><button class="btn-dark">Create Event</button></a>
+    </div>
+</div>
+@foreach (Employee item in Model)
+{
+    <div class="container">
+        <div class="main-body">
 
-                <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="@item.Photo" alt="Admin" class="rounded-circle" width="150">
-                                    <div class="mt-3">
-                                        <h4>@item.Fname     @item.Lname    @item.Sname</h4>
-                                        <p class="text-secondary mb-1">@item.Position</p>
-                                    </div>
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="@item.Photo" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>@item.Fname @item.Lname @item.Sname</h4>
+                                    <p class="text-secondary mb-1">@item.Position</p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-md-8">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Fname  @item.Lname
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Department</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Department
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Status</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Status
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Hourly rate</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Hourly_Rate
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">hours worked</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Many_hours_worked
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-9 text-secondary">
-                                        <a asp-controller="Home" asp-action="Event" asp-route-id="@item.Id"><button class="btn-dark">Create Event</button></a>
-                                    </div>
-                                </div>
 
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @item.Fname @item.Lname
+                                </div>
                             </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Department</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @item.Department
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Status</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @item.Status
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Hourly rate</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @item.Hourly_Rate
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">hours worked</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @item.Many_hours_worked
+                                </div>
+                            </div>
+                            <hr>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 </body>

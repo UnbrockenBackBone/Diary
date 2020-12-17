@@ -13,13 +13,15 @@ namespace Diary.Models
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Sname { get; set; }
-        public string Event { get; set; }
         public string Position { get; set; }
         public string Department { get; set; }
         public int Status { get; set; }
         public int Hourly_Rate { get; set; }
         public int Many_hours_worked { get; set; }
         public string Photo { get; set; }
-        public int AdmModUse { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public int? RoleId { get; set; }
+        public Role Role { get; set; }
     }
 }
