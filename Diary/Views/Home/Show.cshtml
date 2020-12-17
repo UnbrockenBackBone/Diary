@@ -1,98 +1,74 @@
 ﻿@model IEnumerable<Diary.Models.Employee>
-
-@{
-    ViewData["Title"] = "Show";
-}
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: #E0DABB;
-    }
-
-    #text {
-        text-align: center;
-    }
-</style>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <style>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>Clean Bootstrap Half Page Template - Bootsnipp.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+
+        .home-main {
+            background: #D4AC0D;
+            color: #fff;
+            padding: 13%;
+            text-align: center;
+            margin-bottom: 2%;
+        }
+
+        .blinker {
+            animation: blinker 1.5s linear infinite;
+        }
+
         body {
-            margin-top: 20px;
-            color: white;
-            text-align: left;
-            background-color: #8DC0C9;
+            background-color: #196F3D;
+         
         }
 
-        .main-body {
-            padding: 15px;
+
+
+        .home-main button {
+            background: #FFFFFF;
+            color: #000000;
+            border-radius: 0;
+            font-weight: 700;
+            width: 16%;
+            height: 50px;
+            top: 4%;
+            margin-top: 3%;
         }
 
-        .card {
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: black;
-            background-clip: border-box;
-            border: 0 solid rgba(0,0,0,.125);
-            border-radius: 4%;
-            box-shadow: 0.6em 0.6em 6px rgba(122,122,122,0.5);
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            min-height: 1px;
-            padding: 1rem;
-        }
-
-        .gutters-sm {
-            margin-right: -8px;
-            margin-left: -8px;
-        }
-
-            .gutters-sm > .col, .gutters-sm > [class*=col-] {
-                padding-right: 8px;
-                padding-left: 8px;
+            .home-main button:hover {
+                transition: 1s ease;
+                color: #5812c5;
+                width: 19%;
             }
 
-        .mb-3, .my-3 {
-            margin-bottom: 1rem !important;
+        .content1-left {
+            padding: 1%;
+            background: #FFFFFF;
         }
 
-        .bg-gray-300 {
-            background-color: #e2e8f0;
+        .content1-right {
+            padding: 1%;
+            background: #D4AC0D;
         }
 
-        .h-100 {
-            height: 100% !important;
+        .home-content2 {
+            background: #adb5bd;
+            padding: 1.4%;
+            text-align: center;
         }
 
-        .shadow-none {
-            box-shadow: none !important;
-        }
+            .home-content2 p {
+                font-size: 18px;
+                line-height: 50px;
+            }
 
-        hr {
-            background-color: white;
-        }
-        .img-circular {
-            width: 200px;
-            height: 200px;
-            display: block;
-            background-size: cover;
-            background-position: center;
-            border-top-left-radius: 100px;
-            -webkit-border-top-left-radius: 100px;
-            -moz-border-top-left-radius: 100px;
-            border-bottom-right-radius: 100px;
-            -webkit-border-bottom-right-radius: 100px;
-            -moz-border-bottom-right-radius: 100px;
-        }
+                .home-content2 p span {
+                    font-weight: 500;
+                }
 
         .img-circle {
             display: inline-block;
@@ -102,21 +78,24 @@
             background-size: cover;
             border-radius: 50%;
         }
-
-
     </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <div class="container-fluid home-main">
+        <h2>Good Day <span class="blinker">!</span></h2>
+        <a asp-controller="Home" asp-action="Accaunt"> <button type="button" class="btn btn-default">View Profile</button></a>
+    </div>
+    <div class="container-fluid home-content1">
+        <div class="row">
+            @foreach (Employee item in Model)
+            {
+                @if (item.Id % 2 == 0)
+                {
+                    <div class="col-md-4 content1-left">
+                        <a asp-controller="Home" asp-action="PagePeople" asp-route-id="@item.Id">
 
-    @foreach (Employee item in Model)
-    {
-
-        <div class="container">
-            <div class="main-body">
-
-                <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
                                     @*<div class="img-circular" style="background-image: url('@item.Photo');"></div>*@
@@ -128,114 +107,32 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </a>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card mb-3">
+                }
+                else
+                {
+                    <div class="col-md-4 content1-right">
+                        <a asp-controller="Home" asp-action="PagePeople" asp-route-id="@item.Id">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Fname  @item.Lname
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Department</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Department
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Status</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Status
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Hourly rate</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Hourly_Rate
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">hours worked</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        @item.Many_hours_worked
-                                    </div>
-                                </div>
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    @*<div class="img-circular" style="background-image: url('@item.Photo');"></div>*@
+                                    <div class="img-circle" style="background-image: url('@item.Photo');"></div>
 
+                                    <div class="mt-3">
+                                        <h4> @item.Fname </h4>
+                                        <p class="text-secondary mb-1">@item.Position</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-            </div>
+                }
+            }
         </div>
-    }
+    </div>
+   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

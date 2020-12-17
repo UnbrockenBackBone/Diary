@@ -1,9 +1,11 @@
-﻿<html>
+﻿@model IEnumerable<Diary.Models.Employee>
+<html>
 <head>
     <style>
         hr {
             background-color: white;
         }
+
         body {
             margin-top: 20px;
             color: white;
@@ -63,90 +65,98 @@
         .shadow-none {
             box-shadow: none !important;
         }
+
+        .img-circle {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-position: 50% 50%;
+            background-size: cover;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="main-body">
+    @foreach (Employee item in Model)
+    {
+        if (ViewBag.UserId == item.Id)
+        {
+            <div class="container">
+                <div class="main-body">
 
-            <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                                <div class="mt-3">
-                                    <h4>Mark</h4>
-                                    <p class="text-secondary mb-1">Full Stack Developer</p>
+                    <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                        @*<div class="img-circular" style="background-image: url('@item.Photo');"></div>*@
+                                        <div class="img-circle" style="background-image: url('@item.Photo');"></div>
+
+                                        <div class="mt-3">
+                                            <h4> @item.Fname </h4>
+                                            <p class="text-secondary mb-1">@item.Position</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-
-                </div>
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    Mark Lein
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Department</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    Web maker
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Status</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    Administrator
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Hourly rate</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    0
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">hours worked</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    0
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Photo</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    https://media.npr.org/assets/img/2013/05/03/acornish_2011_sig_crop_sq-33441a4506a3c09bca55323e5b3d0521358d32e1.jpg
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Mark Lein
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Department</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Web maker
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Status</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Administrator
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Hourly rate</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            0
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Hours worked</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            0
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-</body>
+        }
+    }
+        </body>
 </html>

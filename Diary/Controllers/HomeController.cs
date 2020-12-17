@@ -48,12 +48,19 @@ namespace Diary.Controllers
                     AdmModUse = 0
                  }); ;
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Show");
         }
-        public IActionResult PagePeople()
+        public IActionResult PagePeople(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.UserId = id;
+            return View(db.Employee.ToList());
+        }
+        public IActionResult Accaunt()
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult RedugEmployee()
         {
