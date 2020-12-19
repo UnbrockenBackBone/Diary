@@ -10,7 +10,7 @@ namespace Diary.Models
     {
         public int Id { get; set; }
         public string Name_Event { get; set; }
-        public string Start_Date_Event { get; set; }
-        public string End_Date_Event { get; set; }
+        public DateTime Start_Date_Event { get; set; }
+        public DateTime End_Date_Event { get; set; }
     }
 }

@@ -30,15 +30,16 @@ namespace Diary.Controllers
             return View(db.Employee.ToList());
         }
         [HttpGet]
-        public IActionResult PagePeople()
-        {
-            return View();
-        }
         public IActionResult PagePeople(int? id)
         {
             if (id == null) return RedirectToAction("Index");
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
+        }
+        [HttpPost]
+        public IActionResult PagePeople()
+        {
+            return View();
         }
         #region Add
         [HttpGet]
@@ -179,8 +180,6 @@ namespace Diary.Controllers
         {
             if (id == null) return View(db.Employee.ToList());
 
-            db.Event_Employee.Remove(db.Event_Employee.Find(id));
-            db.SaveChanges();
             db.Employee.Remove(db.Employee.Find(id));
             db.SaveChanges();
             return RedirectToAction("Show");
@@ -194,6 +193,17 @@ namespace Diary.Controllers
         public IActionResult Moder()
         {
             return View(db.Employee.ToList());
+        }
+        [HttpGet]
+        public IActionResult Accaunt()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Events()
+        {
+            return View(db.Event.ToList());
         }
     }
 }
