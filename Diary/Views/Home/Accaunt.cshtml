@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<Diary.Models.Employee>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,15 +10,15 @@
         body {
             margin-top: auto;
             background-color: #196F3D;
-      
         }
-        
+
         .border {
             border-bottom: 1px solid #F1F1F1;
         }
 
         .main-secction {
             box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+            background-color: #FFFFFF;
         }
 
         .image-section {
@@ -36,7 +38,6 @@
 
         .user-left-part {
             margin: 0px;
-
         }
 
         .user-image img {
@@ -78,7 +79,7 @@
             }
 
         .profile-right-section {
-            padding: 20px 365px 10px 0px;
+            padding: 20px 395px 0px 0px;
             background-color: #FFFFFF;
         }
 
@@ -129,130 +130,131 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+    @foreach (Employee item in Model)
+    {
+        if (ViewBag.UserId == item.Id)
+        {
+<div class="container main-secction">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+            @* //  фото верхнього фону (листя)*@
+            <img src="https://img.tsn.ua/cached/1538126808/tsn-0aac7b3bbd08e91384419d4ae49bc10f/thumbs/1340x530/87/83/b6f76129059ee99facbdd66f220d8387.jpeg">
+        </div>
+        <div class="row user-left-part">
+            <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                @*//фото користувача і кнопки*@
+                <div class="row ">
 
-    <div class="container main-secction">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
-                @* //  фото верхнього фону (листя)*@
-                <img src="https://img.tsn.ua/cached/1538126808/tsn-0aac7b3bbd08e91384419d4ae49bc10f/thumbs/1340x530/87/83/b6f76129059ee99facbdd66f220d8387.jpeg">
-            </div>
-            <div class="row user-left-part">
-                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
-                    @*//фото користувача і кнопки*@
-                    <div class="row ">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
 
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
+                            <div class="img-circle user-image" style="background-image: url('@item.Photo');"></div>
 
-                                <div class="img-circle user-image" style="background-image: url('https://assets.teenvogue.com/photos/57a4ac9e9a3823d758b555c2/master/w_2001,h_3000,c_limit/vanessa-hudgens-beauty-evo-2016-3.jpg');"></div>
-
-                            </div>
                         </div>
-                        <br /><br /><br /><br /><br />
-                        <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                            <a asp-controller="Home" asp-action="Add"><button class="btn btn-success btn-block follow">Add employee</button></a>
-                            <br/>
-                            <a asp-controller="Home" asp-action="RedugEmployee"><button class="btn btn-warning btn-block">Redug employee</button></a>
-                        </div>
-
-
                     </div>
+                    <br /><br /><br /><br /><br />
+                    <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                        <a asp-controller="Home" asp-action="Add"><button class="btn btn-success btn-block follow">Add employee</button></a>
+                        <br />
+                        <a asp-controller="Home" asp-action="RedugEmployee"><button class="btn btn-warning btn-block">Redug employee</button></a>
+                    </div>
+
+
                 </div>
-                <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
-                    <div class="row profile-right-section-row">
-                        <div class="col-md-12 profile-header">
-                            @*// і'мя  і посада*@
-                            <div class="row">
-                                <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
-                                    <h1>Juan Perez</h1>
-                                    <h5>Developer</h5>
-                                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                <div class="row profile-right-section-row">
+                    <div class="col-md-12 profile-header">
+                        @*// і'мя  і посада*@
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                <h1>@item.Fname</h1>
+                                <h5>@item.Position</h5>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @*// контент все про користувача*@
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> Basic information</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Additional Information</a>
-                                        </li>
-                                    </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*// контент все про користувача*@
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> Basic information</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Additional Information</a>
+                                    </li>
+                                </ul>
 
-                                    Tab panes
-                                    <br /><br />
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade show active" id="profile">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>ID</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>509230671</p>
-                                                </div>
+                                Tab panes
+                                <br /><br />
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>ID</label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Firstname</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Juan</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Lastname</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Perez</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Position</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>12345678</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Department</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Developer</p>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Id</p>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="buzz">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Status</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Expert</p>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Firstname</label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Hourly Rate</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>10$/hr</p>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Fname</p>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Many hours worked</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>230</p>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Lastname</label>
                                             </div>
-
+                                            <div class="col-md-6">
+                                                <p>@item.Lname</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Position</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Position</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Department</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Department</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="buzz">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Status</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Status</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Hourly_Rate/hr</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Many hours worked</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@item.Many_hours_worked</p>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -260,13 +262,14 @@
                                 </div>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+</div>}
+            }
 </body>
 </html>

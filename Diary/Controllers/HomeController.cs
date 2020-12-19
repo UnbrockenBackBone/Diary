@@ -29,11 +29,11 @@ namespace Diary.Controllers
         {
             return View(db.Employee.ToList());
         }
-        [HttpGet]
-        public IActionResult PagePeople()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult PagePeople()
+        //{
+        //    return View();
+        //}
         public IActionResult PagePeople(int? id)
         {
             if (id == null) return RedirectToAction("Index");
@@ -194,6 +194,10 @@ namespace Diary.Controllers
         public IActionResult Moder()
         {
             return View(db.Employee.ToList());
+        }
+        public IActionResult Accaunt()
+        {
+            return View();
         }
     }
 }
