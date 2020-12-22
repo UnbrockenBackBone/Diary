@@ -1,4 +1,5 @@
-﻿<html>
+﻿@model Diary.Models.LoginModel
+<html>
 <head>
     <style>
         body {
@@ -193,12 +194,10 @@
             width: 500px;
             left: 100px
         }
-
-
     </style>
 </head>
 <body>
-    <br/><br />
+    <br /><br />
     <div class="row">
         <div class="col-md-6 mx-auto p-0">
             <div class="card">
@@ -207,20 +206,13 @@
                         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><a href="~/Home/Login" for="tab-1" class="tab">Login</a> <input id="tab-2" type="radio" name="tab" class="sign-up"><a href="~/Home/Register" for="tab-1" class="tab">Register</a>
                         <div class="login-space">
                             <div class="login">
-                                <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" placeholder="Enter your username"> </div>
-                                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password"> </div>
-                                <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div>
-                                <div class="group"> <input type="submit" class="button" value="Sign In"> </div>
-                                <div class="hr"></div>
-                            </div>
-                            <div class="sign-up-form">
-                                <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" placeholder="Create your Username"> </div>
-                                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Create your password"> </div>
-                                <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
-                                <div class="group"> <label for="pass" class="label">Email Address</label> <input id="pass" type="text" class="input" placeholder="Enter your email address"> </div>
-                                <div class="group"> <input type="submit" class="button" value="Sign Up"> </div>
-                                <div class="hr"></div>
-
+                                <form asp-action="Login" asp-controller="Home" asp-anti-forgery="true">
+                                    <div class="validation" asp-validation-summary="ModelOnly"></div>
+                                    <div class="group"> <label asp-for="Email" class="label">Email</label> <input asp-for="Email" id="user" type="text" class="input" placeholder="Enter your username"> </div>
+                                    <div class="group"> <label asp-for="Password" class="label">Password</label> <input asp-for="Password" id="pass" type="password" class="input" data-type="password" placeholder="Enter your password"> </div>
+                                    <div class="group"> <input type="submit" class="button" value="Sign In"> </div>
+                                    <div class="hr"></div>
+                                </form>
                             </div>
                         </div>
                     </div>
