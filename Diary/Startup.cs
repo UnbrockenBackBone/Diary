@@ -51,7 +51,7 @@ namespace Diary
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Show}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}");
             });
         }
     }

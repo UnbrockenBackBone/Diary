@@ -9,6 +9,8 @@ using Diary.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Diary.Controllers
@@ -24,11 +26,13 @@ namespace Diary.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Moderator")]
         [HttpGet]
         public IActionResult Show()
         {
             return View(db.Employee.ToList());
         }
+        [Authorize(Roles = "Moderator")]
         [HttpGet]
         public IActionResult PagePeople(int? id)
         {
@@ -36,17 +40,22 @@ namespace Diary.Controllers
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
+        [Authorize(Roles = "Moderator")]
         [HttpPost]
         public IActionResult PagePeople()
         {
             return View();
         }
         #region Add
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, int Hourly_Rate, int Many_hours_worked, string Photo)
         {
@@ -69,6 +78,8 @@ namespace Diary.Controllers
         #endregion
 
         #region Update
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Update(int? id)
         {
@@ -76,7 +87,8 @@ namespace Diary.Controllers
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
-
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(Employee employee)
         {
@@ -154,9 +166,9 @@ namespace Diary.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        } 
-        #endregion  
-        
+        }
+        #endregion
+
         #region Event
         [HttpGet]
         public IActionResult Event()
@@ -164,7 +176,8 @@ namespace Diary.Controllers
            
             return View(db.Employee.ToList());
         }
-
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Event(Event eEvent, Event_Employee eventEmployee)
         {
@@ -175,6 +188,7 @@ namespace Diary.Controllers
             return RedirectToAction("Show");
         }
         #endregion
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(int? id)
         {
@@ -184,11 +198,14 @@ namespace Diary.Controllers
             db.SaveChanges();
             return RedirectToAction("Show");
         }
+        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult RedugEmployee()
         {
             return View(db.Employee.ToList());
         }
+        [Authorize(Roles = "Moderator")]
         [HttpGet]
         public IActionResult Moder()
         {
@@ -199,7 +216,6 @@ namespace Diary.Controllers
         {
             return View();
         }
-
         [HttpGet]
         public IActionResult Events()
         {
