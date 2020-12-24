@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Diary.Models.Employee>
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,10 +130,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    @foreach (Employee item in Model)
-    {
-        if (ViewBag.UserId == item.Id)
-        {
+
 <div class="container main-secction">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 image-section">
@@ -148,7 +145,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
 
-                            <div class="img-circle user-image" style="background-image: url('@item.Photo');"></div>
+                            <div class="img-circle user-image" style="background-image: url('@ViewBag.User.Photo');"></div>
 
                         </div>
                     </div>
@@ -168,8 +165,8 @@
                         @*// і'мя  і посада*@
                         <div class="row">
                             <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
-                                <h1>@item.Fname</h1>
-                                <h5>@item.Position</h5>
+                                <h1>@ViewBag.User.Fname</h1>
+                                <h5>@ViewBag.User.Position</h5>
                             </div>
                         </div>
                     </div>
@@ -192,18 +189,10 @@
                                     <div role="tabpanel" class="tab-pane fade show active" id="profile">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label>ID</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Id</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
                                                 <label>Firstname</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>@item.Fname</p>
+                                                <p>@ViewBag.User.Fname</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -211,7 +200,7 @@
                                                 <label>Lastname</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>@item.Lname</p>
+                                                <p>@ViewBag.User.Lname</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -219,7 +208,7 @@
                                                 <label>Position</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>@item.Position</p>
+                                                <p>@ViewBag.User.Position</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -227,7 +216,7 @@
                                                 <label>Department</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>@item.Department</p>
+                                                <p>@ViewBag.User.Department</p>
                                             </div>
                                         </div>
                                     </div>
@@ -237,23 +226,7 @@
                                                 <label>Status</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>@item.Status</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Hourly_Rate/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Many hours worked</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Many_hours_worked</p>
+                                                <p>@ViewBag.User.Status</p>
                                             </div>
                                         </div>
 
@@ -269,7 +242,6 @@
             </div>
         </div>
     </div>
-</div>}
-            }
+</div>
 </body>
 </html>

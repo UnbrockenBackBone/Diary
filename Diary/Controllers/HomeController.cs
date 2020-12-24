@@ -57,7 +57,7 @@ namespace Diary.Controllers
         [Authorize(Roles = "Moderator")]
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, int Hourly_Rate, int Many_hours_worked, string Photo)
+        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, string Photo)
         {
             db.Employee.AddRange(
                  new Employee
@@ -68,8 +68,6 @@ namespace Diary.Controllers
                      Position = Position,
                      Department = Department,
                      Status = 0,
-                     Hourly_Rate = Hourly_Rate,
-                     Many_hours_worked = Many_hours_worked,
                      Photo = Photo,
                  }); ;
             db.SaveChanges();
@@ -124,7 +122,7 @@ namespace Diary.Controllers
 
                     await Authenticate(user); 
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Accaunt", "Home");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -149,7 +147,7 @@ namespace Diary.Controllers
                 {
                     await Authenticate(user); 
 
-                    return RedirectToAction("PagePeople", "Home");
+                    return RedirectToAction("Accaunt", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -214,6 +212,7 @@ namespace Diary.Controllers
         [HttpGet]
         public IActionResult Accaunt()
         {
+            ViewBag.User = db.Employee.Find(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value);
             return View();
         }
         [HttpGet]
