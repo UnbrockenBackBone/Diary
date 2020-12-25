@@ -29,8 +29,8 @@ namespace Diary
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
-                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
                 });
 
             services.AddControllersWithViews();
@@ -51,7 +51,7 @@ namespace Diary
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Login}");
+                    pattern: "{controller=User}/{action=Login}");
             });
         }
     }

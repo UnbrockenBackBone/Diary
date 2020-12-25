@@ -206,7 +206,7 @@
                         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><a href="~/Home/Login" for="tab-1" class="tab">Login</a> <input id="tab-2" type="radio" name="tab" class="sign-up"><a href="~/Home/Register" for="tab-1" class="tab">Register</a>
                         <div class="login-space">
                             <div class="login">
-                                <form asp-action="Login" asp-controller="Home" asp-anti-forgery="true">
+                                <form asp-action="Login" asp-controller="User" asp-anti-forgery="true">
                                     <div class="validation" asp-validation-summary="ModelOnly"></div>
                                     <div class="group"> <label asp-for="Email" class="label">Email</label> <input asp-for="Email" id="user" type="text" class="input" placeholder="Enter your username"> </div>
                                     <div class="group"> <label asp-for="Password" class="label">Password</label> <input asp-for="Password" id="pass" type="password" class="input" data-type="password" placeholder="Enter your password"> </div>
