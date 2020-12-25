@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Diary.Models;
@@ -18,6 +19,13 @@ namespace Diary.Controllers
         public UserController(MobileContext context)
         {
             db = context;
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            ViewBag.User = db.FindEmail(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value, db);
+            return View();
         }
         [HttpGet]
         public IActionResult Register()
@@ -43,7 +51,7 @@ namespace Diary.Controllers
 
                     await Authenticate(user);
 
-                    return RedirectToAction("Account", "User");
+                    return RedirectToAction("Index", "User");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -68,7 +76,7 @@ namespace Diary.Controllers
                 {
                     await Authenticate(user);
 
-                    return RedirectToAction("Account", "User");
+                    return RedirectToAction("Index", "User");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -89,7 +97,6 @@ namespace Diary.Controllers
         [HttpGet]
         public IActionResult Account()
         {
-
             ViewBag.User = db.FindEmail(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value, db);
             return View();
         }

@@ -27,7 +27,7 @@ svg.intro.go .text {
 
 svg.intro.go .text-stroke {
     fill: none;
-    stroke: #FFE808;
+    stroke: #196F3D;
     stroke-width: 2.8px;
     stroke-dashoffset: -900;
     stroke-dasharray: 900;
@@ -45,7 +45,7 @@ svg.intro.go .text-stroke:nth-child(3) {
 }
 
 svg.intro.go .text-stroke-2 {
-    stroke: #FFFFFF;
+    stroke: #77D644;
     animation-delay: 1.2s;
 }
 
