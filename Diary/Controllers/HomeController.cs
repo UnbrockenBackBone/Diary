@@ -47,15 +47,13 @@ namespace Diary.Controllers
             return View();
         }
         #region Add
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, string Photo)
         {
@@ -76,8 +74,7 @@ namespace Diary.Controllers
         #endregion
 
         #region Update
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpGet]
         public IActionResult Update(int? id)
         {
@@ -85,8 +82,7 @@ namespace Diary.Controllers
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         public IActionResult Update(Employee employee)
         {
@@ -122,7 +118,7 @@ namespace Diary.Controllers
 
                     await Authenticate(user); 
 
-                    return RedirectToAction("Accaunt", "Home");
+                    return RedirectToAction("Account", "Home");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -147,7 +143,7 @@ namespace Diary.Controllers
                 {
                     await Authenticate(user); 
 
-                    return RedirectToAction("Accaunt", "Home");
+                    return RedirectToAction("Account", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -196,8 +192,7 @@ namespace Diary.Controllers
             db.SaveChanges();
             return RedirectToAction("Show");
         }
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpGet]
         public IActionResult RedugEmployee()
         {
@@ -210,15 +205,23 @@ namespace Diary.Controllers
             return View(db.Employee.ToList());
         }
         [HttpGet]
-        public IActionResult Accaunt()
+        public IActionResult Account()
         {
-            ViewBag.User = db.Employee.Find(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value);
+
+            ViewBag.User = db.FindEmail(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType).Value, db);
             return View();
         }
         [HttpGet]
         public IActionResult Events()
         {
             return View(db.Event.ToList());
+        }
+        [HttpGet]
+        public IActionResult Salary(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.Id = id;
+            return View(db.Salary.ToList());
         }
     }
 }

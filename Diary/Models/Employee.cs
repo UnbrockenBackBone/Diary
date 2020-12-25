@@ -8,7 +8,7 @@ namespace Diary.Models
 {
     public class Employee
     {
-
+        [Key]
         public int Id { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
@@ -17,7 +17,7 @@ namespace Diary.Models
         public string Department { get; set; }
         public int Status { get; set; }
         public string Photo { get; set; }
-        [Key]
+
         public string Email { get; set; }
         public string Password { get; set; }
         public int? RoleId { get; set; }

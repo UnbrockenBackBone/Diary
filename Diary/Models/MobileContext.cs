@@ -11,12 +11,25 @@ namespace Diary.Models
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Event> Event { get; set; }
         public DbSet<Event_Employee> Event_Employee { get; set; }
+        public DbSet<Salary> Salary { get; set; }
 
         public DbSet<Role> Roles { get; set; }
         public MobileContext(DbContextOptions<MobileContext> options)
             : base(options)
         {
             Database.EnsureCreated();
+        }
+        public Employee FindEmail(string email, MobileContext db)
+        {
+            foreach (Employee item in db.Employee)
+            {
+                if (email == item.Email)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

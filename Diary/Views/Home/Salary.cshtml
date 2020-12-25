@@ -1,0 +1,53 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model IEnumerable<Diary.Models.Salary>
+@{
+    ViewData["Title"] = "Salary";
+}
+
+<h1>Salary</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Hourly_rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Many_hours_worked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Salary
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (ViewBag.Id == item.Id_User)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hourly_rate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Many_hours_worked)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @{
+                            int a = @item.Hourly_rate * @item.Many_hours_worked;
+                        }
+                        @a
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
