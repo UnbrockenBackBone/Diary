@@ -134,126 +134,132 @@
     {
         if (ViewBag.UserId == item.Id)
         {
-<div class="container main-secction">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
-            @* //  фото верхнього фону (листя)*@
-            <img src="https://walldeco.ua/img/gallery/155/thumbs/thumb_l_shut_283.jpg">
-        </div>
-        <div class="row user-left-part">
-            <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
-                @*//фото користувача і кнопки*@
-                <div class="row ">
-
-                    <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
-
-                            <div class="img-circle user-image" style="background-image: url('@item.Photo');"></div>
-
-                        </div>
+            <div class="container main-secction">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                        @* //  фото верхнього фону (листя)*@
+                        <img src="https://walldeco.ua/img/gallery/155/thumbs/thumb_l_shut_283.jpg">
                     </div>
-                    <br /><br /><br /><br /><br />
-                    <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                        <a asp-controller="Home" asp-action="Add"><button class="btn btn-success btn-block follow">Add employee</button></a>
-                        <br />
-                        <a asp-controller="Home" asp-action="RedugEmployee"><button class="btn btn-warning btn-block">Redug employee</button></a>
-                    </div>
+                    <div class="row user-left-part">
+                        <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                            @*//фото користувача і кнопки*@
+                            <div class="row ">
 
+                                <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
 
-                </div>
-            </div>
-            <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
-                <div class="row profile-right-section-row">
-                    <div class="col-md-12 profile-header">
-                        @*// і'мя  і посада*@
-                        <div class="row">
-                            <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
-                                <h1>@item.Fname</h1>
-                                <h5>@item.Position</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @*// контент все про користувача*@
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> Basic information</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Additional Information</a>
-                                    </li>
-                                </ul>
-
-                                Tab panes
-                                <br /><br />
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane fade show active" id="profile">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>ID</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Id</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Firstname</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Fname</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Lastname</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Lname</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Position</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Position</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Department</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Department</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="buzz">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Status</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>@item.Status</p>
-                                            </div>
-                                        </div>
+                                        <div class="img-circle user-image" style="background-image: url('@item.Photo');"></div>
 
                                     </div>
-
                                 </div>
+                                <br /><br /><br /><br /><br />
+                                @if (item.RoleId == 1)
+                                {
+                                    <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id"> <button class="btn-dark btn btn-default">Delete</button></a>
+                                        <br />
+                                        <a asp-controller="Home" asp-action="Update" asp-route-id="@item.Id"><button class="btn-dark btn btn-default">Update</button></a>
 
+                                    </div>
+                                }
+                            <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                                <br><br /><br><br />
+                                <a asp-controller="Home" asp-action="Event"><button class="btn-dark">Create Event</button></a>
                             </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                            <div class="row profile-right-section-row">
+                                <div class="col-md-12 profile-header">
+                                    @*// і'мя  і посада*@
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                            <h1>@item.Fname</h1>
+                                            <h5>@item.Position</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @*// контент все про користувача*@
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> Basic information</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Additional Information</a>
+                                                </li>
+                                            </ul>
 
+                                            Tab panes
+                                            <br /><br />
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>ID</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Id</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Firstname</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Fname</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Lastname</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Lname</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Position</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Position</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>Department</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Department</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="buzz">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Status</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>@item.Status</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>}
-}
+            </div>}
+    }
 </body>
 </html>

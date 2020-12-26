@@ -151,11 +151,11 @@
                     </div>
                     <br /><br /><br /><br /><br />
                     <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                        @if (@ViewBag.User.RoleId == 2 || @ViewBag.User.RoleId == 1)
+                        @if (@ViewBag.User.RoleId == 1)
                         {
                             <a asp-controller="Home" asp-action="Add"><button class="btn btn-success btn-block follow">Add employee</button></a>
                             <br />
-                            <a asp-controller="Home" asp-action="RedugEmployee"><button class="btn btn-warning btn-block">Redug employee</button></a>
+                            <a asp-controller="Home" asp-action="RedugEmployee"><button class="btn btn-warning btn-block">Update employee</button></a>
                         }
                         <a asp-controller="User" asp-action="Salary" asp-route-id="@ViewBag.User.Id"><button class="btn btn-success btn-block follow">Salary</button></a>
 

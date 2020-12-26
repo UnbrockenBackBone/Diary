@@ -1,0 +1,42 @@
+﻿@using Diary.ViewModels
+@using Diary.Models
+@{
+    ViewData["Title"] = "Event";
+}
+
+<h1>Event</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @*@foreach (var item in Model.Events)
+        {
+            <tr>
+                <td>
+                    @item.Name_Event
+                </td>
+            </tr>
+        }*@
+    @*<form class="form-inline">
+        <label>Выберите пользователя:</label>
+        <select name="companyId" class="form-control">
+            @foreach(CompanyModel comp in Model.Companies)
+            {
+                <option value="@comp.Id">@comp.Name</option>
+            }
+        </select>
+        <input type="submit" />
+    </form>
+    <br />
+    <table class="table">
+        @foreach (Phone p in Model.Phones)
+        {
+            <tr><td>@p.Name</td><td>@p.Manufacturer?.Name</td><td>@p.Price</td></tr>
+        }
+    </table>*@
+    </tbody>
+</table>

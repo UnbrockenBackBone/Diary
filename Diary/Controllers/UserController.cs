@@ -101,16 +101,17 @@ namespace Diary.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Events()
-        {
-            return View(db.Event.ToList());
-        }
-        [HttpGet]
         public IActionResult Salary(int? id)
         {
             if (id == null) return RedirectToAction("Index");
             ViewBag.Id = id;
             return View(db.Salary.ToList());
+        }
+        [HttpGet]
+        public IActionResult Events()
+        {
+
+            return View(db.Event.ToList());
         }
     }
 }

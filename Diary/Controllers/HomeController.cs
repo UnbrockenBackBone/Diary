@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Diary.Models;
 using System.Security.Claims;
+using Diary.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -18,9 +19,17 @@ namespace Diary.Controllers
     public class HomeController : Controller
     {
         MobileContext db;
+        EventViewModel ev = new EventViewModel();
         public HomeController(MobileContext context)
         {
             db = context;
+        }
+        [HttpGet]
+        public IActionResult Events()
+        {
+            ev.Events = db.Event.ToList();
+            ev.Event_Employees = db.Event_Employee.ToList();
+            return View(ev);
         }
         public IActionResult Index()
         {
@@ -32,7 +41,7 @@ namespace Diary.Controllers
         {
             return View(db.Employee.ToList());
         }
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Admin")]
         [HttpGet]
         public IActionResult PagePeople(int? id)
         {
@@ -40,22 +49,22 @@ namespace Diary.Controllers
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Admin")]
         [HttpPost]
         public IActionResult PagePeople()
         {
             return View();
         }
         #region Add
-        [Authorize(Roles = "Admin, Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-        [Authorize(Roles = "Admin, Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, string Photo)
+        public IActionResult Add(string Fname, string Lname, string Sname, string Position, string Department, int Status, int RoleId, string Photo )
         {
             db.Employee.AddRange(
                  new Employee
@@ -65,15 +74,16 @@ namespace Diary.Controllers
                      Sname = Sname,
                      Position = Position,
                      Department = Department,
-                     Status = 0,
+                     Status = Status,
+                     RoleId = RoleId, 
                      Photo = Photo,
                  }); ;
             db.SaveChanges();
-            return View();
+            return Redirect("RedugEmployee");
         }
         #endregion
 
-        [Authorize(Roles = "Admin, Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Update(int? id)
         {
@@ -81,35 +91,15 @@ namespace Diary.Controllers
             ViewBag.UserId = id;
             return View(db.Employee.ToList());
         }
-        [Authorize(Roles = "Admin, Moderator")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Update(Employee employee)
         {
             db.Employee.Update(employee);
 
             db.SaveChanges();
-            return RedirectToAction("Show");
+            return RedirectToAction("RedugEmployee");
         }
-
-        #region Event
-        [HttpGet]
-        public IActionResult Event()
-        {
-           
-            return View(db.Employee.ToList());
-        }
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public IActionResult Event(Event eEvent, Event_Employee eventEmployee)
-        {
-            db.Event.Update(eEvent);
-            db.Event_Employee.Update(eventEmployee);
-
-            db.SaveChanges();
-            return RedirectToAction("Show");
-        }
-        #endregion
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(int? id)
@@ -118,7 +108,7 @@ namespace Diary.Controllers
 
             db.Employee.Remove(db.Employee.Find(id));
             db.SaveChanges();
-            return RedirectToAction("Show");
+            return RedirectToAction("RedugEmployee");
         }
         [Authorize(Roles = "Admin, Moderator")]
         [HttpGet]
@@ -128,9 +118,18 @@ namespace Diary.Controllers
         }
         [Authorize(Roles = "Moderator")]
         [HttpGet]
-        public IActionResult Moder()
+        public IActionResult Event()
         {
-            return View(db.Employee.ToList());
+            return View();
+        }
+        [Authorize(Roles = "Moderator")]
+        [HttpPost]
+        public IActionResult Event(Event eve)
+        {
+            db.Event.Update(eve);
+
+            db.SaveChanges();
+            return Redirect("Show");
         }
     }
 }
